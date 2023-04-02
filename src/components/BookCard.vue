@@ -9,33 +9,43 @@
       flex
       flex-col
       justify-between
-    ><img :src="image" alt="" class="w-[150px]"></div>
+    ><img :src="book.thumbnailUrl" alt="" class="w-[150px]"></div>
 
     <div class="space-y-2">
-      <div>{{ title }}</div>
-      <div>{{ author }}</div>
-      <div>{{ price }} FCFA</div>
-      <div>{{ category }}</div>
+      <div>{{ book.title }}</div>
+      <div>{{ book.authors[0] }}</div>
+      <div>{{ book.price }} FCFA</div>
+      <div>{{ book.categories[0] }}</div>
     </div>
     <div class="w-full flex justify-center">
-      <BaseButton>Ajouter au panier</BaseButton>
+      <BaseButton class="w-full" @click="addToBasket(book)" :loading="loading">Ajouter au panier</BaseButton>
     </div>
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
+import { useBasketStore } from "../stores/basket";
 export default {
   props: {
-    title: "",
-    price: "",
-    author: "",
-    image: "",
-    category:""
+   book:{}
   },
   setup() {
     const showBtn = ref(false);
+    const basketStore = useBasketStore()
+    const loading = ref(false)
+    function addToBasket(book){
+        loading.value = true
+        window.setTimeout(()=>{
+            basketStore.addToBasket(book,1)
+            loading.value = false
+        },1000)
+        
+    }
     return {
+        basketStore,
+        addToBasket,
+        loading,
       showBtn,
     };
   },

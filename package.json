@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@vee-validate/rules": "^4.8.4",
+    "kkiapay": "^2.0.17",
     "lodash": "^4.17.21",
     "pinia": "^2.0.32",
     "vee-validate": "^4.8.4",

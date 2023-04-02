@@ -1,9 +1,17 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import allBooks from "@/data/books.json";
+import allBooks from "@/data/add_price.json";
+
+import {watch} from "vue"
 
 export const useBookStore = defineStore("book", () => {
   const peerPage = 6;
+
+  const filter = ref({
+    search: "",
+    categories: [],
+  });
+
 
   const search = ref("")
 
@@ -19,9 +27,7 @@ export const useBookStore = defineStore("book", () => {
 
   const books = ref([]);
 
-  function getTotal() {
-    return allBooks.length;
-  }
+  const total = ref(0)
 
   function fetchBooks(currentPage, filter) {
 
@@ -35,17 +41,34 @@ export const useBookStore = defineStore("book", () => {
               );
         }
 
-        if(filter.search){
-            console.log("filter search", filter.search);
-            filterBooks = filterBooks.filter((value)=>value.title.include(filter.search))
+        if(search.value){
+            filterBooks = filterBooks.filter((value)=>{
+                const searchData = `${value.title}${value.authors[0]}`
+                return searchData.toLowerCase().includes(search.value.toLowerCase())
+            })
         }
     }
+
+    total.value = filterBooks.length
     
     books.value = filterBooks.splice(currentPage * peerPage - peerPage, peerPage);
     
   }
 
+  watch(search,(newValue)=>{
+    let filterBooks =  allBooks; 
+    if(newValue){
+        filterBooks = filterBooks.filter((value)=>{
+            const searchData = `${value.title}${value.authors[0]}`
+            return searchData.toLowerCase().includes(newValue.toLowerCase())
+        })
+    }
+    total.value = filterBooks.length
+    books.value = filterBooks.splice(1, peerPage);
+    
+  })
+
  
 
-  return {  getTotal, categories,fetchBooks,books };
+  return {  categories,fetchBooks,books,search,total };
 });
