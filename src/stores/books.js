@@ -7,6 +7,16 @@ import {watch} from "vue"
 export const useBookStore = defineStore("book", () => {
   const peerPage = 6;
 
+  const currentUser = ref({
+    lastname : "Admin",
+    firstname: "Admin",
+    email : "admin@admin.com"
+  })
+
+  function saveUser(user){
+    currentUser.value = user
+  }
+
   const filter = ref({
     search: "",
     categories: [],
@@ -70,5 +80,5 @@ export const useBookStore = defineStore("book", () => {
 
  
 
-  return {  categories,fetchBooks,books,search,total };
+  return {  categories,fetchBooks,books,search,total,saveUser,currentUser };
 });

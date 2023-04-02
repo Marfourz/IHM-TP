@@ -3,7 +3,8 @@
         <div class="auth-sidebar w-[50%] bg-primary text-red-400 flex flex-col justify-center">
                 <img src="@/assets/images/library.jpg" alt="" >
         </div>
-        <div class="w-[50%] h-full flex items-center justify-center">
+        
+        <div class="md:w-[50%] w-full h-full flex items-center justify-center">
             <Form 
             @submit="login"
             class="w-[80%] flex items-center justify-center flex-col space-y-4   py-8 px-6 md:px-14"
@@ -44,7 +45,8 @@
 
 import { Form } from 'vee-validate';
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
+import { useBookStore } from '../../stores/books';
 
 const router = useRouter()
 
@@ -56,21 +58,28 @@ const password = ref("")
 
 const goodPassword = "adminadmin"
 
-const loading = ref(false)
 
+
+const loading = ref(false)
+const bookStore = useBookStore()
 
 
 function login(){
 
+    
+
     loading.value = true
     window.setTimeout(function(){
-        console.log("login", errorMessage)
-    if(password.value != goodPassword)
+        console.log("login", errorMessage,bookStore.currentUser)
+    if(username.value != bookStore.currentUser.email || password.value != goodPassword){
         errorMessage.value = "Vos identifiant sont incorrectes"
+        loading.value = false
+    }
+        
     else{
         errorMessage.value = ""
         router.push({
-            name : 'home'
+            name : 'books'
         })
     }
     loading.value = false
@@ -79,24 +88,21 @@ function login(){
 }
 
 
+
 </script>
 
-<style lang="scss" scoped>
-.sign-in {
-  .auth-sidebar {
-    img {
+<style  scoped>
+
+
+.auth-sidebar img {
       object-fit: cover;
       height: 100%;
     }
-  }
-}
 
 @media (max-width: 992px) {
-  .sign-in {
     .auth-sidebar {
       display: none;
     }
-  }
 }
 
 </style>

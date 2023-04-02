@@ -28,7 +28,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style  scoped>
 .filterCard-title {
     font-size: 18px;
     font-weight: 500;

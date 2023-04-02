@@ -41,7 +41,7 @@
     <div v-else class="md:px-40 px-6 py-20 space-y-10 bg-white flex flex-col items-center justify-center">
         <img src="@/assets/images/success.webp" alt="" class="h-80">
         <div class=" text-2xl text-center">Super <br> Paiement effectué succès. <br> Merci pour votre confiance !!!!</div>
-
+        <BaseButton @click="goToBook">Retourner à la boutiue</BaseButton>
     </div>
   </div>
 </template>
@@ -79,6 +79,13 @@ function kkiapayWidget() {
     sandbox: true,
     phone: "97000000",
   });
+}
+
+
+function goToBook(){
+    router.push({
+        name : 'books'
+    })
 }
 
 onMounted(() => {

@@ -1,6 +1,6 @@
 <template>
   <div class="h-20 flex justify-between items-center px-10 bg-white">
-    <div><img src="@/assets/images/logo.png" alt="" /></div>
+    <div><img src="@/assets/images/logo.png" alt="" class="w-[200px]"/></div>
     <div class="flex w-full justify-center md:w-1/2">
       <div
         class="hidden border rounded-lg w-full md:flex"
@@ -27,18 +27,18 @@
        
       <div class="rounded h-10 w-10 bg-black"></div>
       <div class="">
-        <div>Username</div>
-        <div class="text-sm">Admin</div>
+        <div>{{bookStore.currentUser.lastname}} {{bookStore.currentUser.firstname}}</div>
+        <div class="text-sm">{{bookStore.currentUser.email}}</div>
       </div>
       <BaseIcon name="chevronDown"></BaseIcon>
 
-      <div class="absolute bg-white shadow-2xl rounded  top-14 left-4 " @click.stop="" v-if="showMenu">
-        <div class="flex items-center space-x-4 boder-b hover:bg-gray-200 py-2 px-6">
+      <div class="absolute bg-white shadow-2xl rounded  top-14 left-4 " @click.stop="" v-if="showMenu" >
+        <div class="flex items-center space-x-4 boder-b hover:bg-gray-200 py-2 px-6" @click.stop="goToProfil">
             <BaseIcon name="user"></BaseIcon>
             <div>Profil</div>
         </div>
 
-        <div class="flex items-center space-x-4 py-2 px-6 hover:bg-gray-200">
+        <div class="flex items-center space-x-4 py-2 px-6 hover:bg-gray-200" @click="logout">
             <BaseIcon name="logout"></BaseIcon>
             <div>Déconexion</div>
         </div>
@@ -63,6 +63,19 @@ import { useRouter } from 'vue-router';
     function goToBasket(){
         router.push({
             name : "basket"
+        })
+    }
+
+    function goToProfil(){
+        showMenu.value = false
+        router.push({
+            name : "profil"
+        })
+    }
+
+    function logout(){
+        router.push({
+            name : "login"
         })
     }
 

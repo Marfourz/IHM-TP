@@ -1,5 +1,6 @@
 <template>
   <div class="md:p-20 p-4 flex md:flex-row flex-col md:space-x-10 space-y-4 md:space-y-0">
+    
     <div class="space-y-8">
       <div class="space-y-4">
         <div class="flex space-x-2 items-center">

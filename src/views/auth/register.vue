@@ -3,7 +3,7 @@
         <div class="auth-sidebar w-[50%] bg-primary text-red-400 flex flex-col justify-center">
                 <img src="@/assets/images/library.jpg" alt="" >
         </div>
-        <div class="w-[50%] h-full flex items-center justify-center">
+        <div class="md:w-[50%] w-full h-full flex items-center justify-center">
             <Form 
             @submit="register"
             class="w-[80%] flex items-center justify-center flex-col space-y-4   py-8 px-6 md:px-14"
@@ -13,21 +13,21 @@
             <BaseSimpleAlert icon="warning" type="danger" v-if="errorMessage">{{errorMessage}}</BaseSimpleAlert>
            
             <BaseInput
-              v-model="username"
+              v-model="user.firstname"
               name="lastname"
               rules="required"
               label="Nom"
               class="w-full"
             ></BaseInput>
             <BaseInput
-              v-model="username"
+              v-model="user.lastname"
               name="firstname"
               rules="required"
               label="Prénom"
               class="w-full"
             ></BaseInput>
             <BaseInput
-              v-model="username"
+              v-model="user.email"
               name="email"
               rules="required"
               label="Email"
@@ -36,7 +36,7 @@
             <BaseInput
                 type="password"
                 name="mot de passe"
-              v-model="password"
+              v-model="user.password"
               rules="required"
               label="Mot de passe"
               class="w-full"
@@ -54,30 +54,36 @@
 
 import { Form } from 'vee-validate';
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { ref,reactive } from 'vue';
+import { useBookStore } from '../../stores/books';
 
 const router = useRouter()
 
 const errorMessage = ref("")
 
-const lastname = ref("")
+const user = reactive({
+    lastname : "",
+    firstname: "",
+    email : "",
+    password : ""
 
-const firstname = ref("")
 
-const email = ref("")
 
-const password = ref("")
+})
+
+
 
 const loading = ref(false)
 
-
+const bookStore = useBookStore()
 
 function register(){
 
     loading.value = true
     window.setTimeout(function(){
         console.log("register", errorMessage)
-        router.push({name : 'home'})
+        //bookStore.saveUser(user)
+        router.push({name : 'books'})
     loading.value = false
     }, 1000)
 }
@@ -85,22 +91,19 @@ function register(){
 
 </script>
 
-<style lang="scss" scoped>
-.sign-up {
-  .auth-sidebar {
-    img {
+<style  scoped>
+
+  .auth-sidebar img {
       object-fit: cover;
       height: 100%;
     }
-  }
-}
+
+
 
 @media (max-width: 992px) {
-  .sign-up {
-    .auth-sidebar {
+ .auth-sidebar {
       display: none;
     }
-  }
 }
 
 </style>

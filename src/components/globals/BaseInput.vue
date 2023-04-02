@@ -23,33 +23,8 @@
         </textarea>
       </div>
 
-      <div v-else-if="type == 'textbeauty'">
-          <QuillEditor theme="snow" v-bind="{ ...$attrs, ...field }"
-            contentType="html"
-           
-            @update:content="inputChange"
-          class="w-full outiline-none focus:shadow-outline rounded-lg focus:outline-none p-4"/>
-      </div>
-      <div
-        v-else-if="type == 'date'"
-        class="border rounded-lg w-full flex items-center justify-between"
-        :class="{
-          'border-borderColor': errors.length == 0,
-          'border-danger bg-fadeDanger': errors.length != 0,
-        }"
-      >
-        <BaseIcon :icon="icon" v-if="icon"></BaseIcon>
-        <v-date-picker v-bind="{ ...$attrs, ...field }">
-          <template v-slot="{ inputValue, inputEvents }">
-            <input
-              :value="inputValue"
-              v-on="inputEvents"
-              class="outiline-0 py-2 rounded-lg px-4 text-gray-700 bg-transparent focus:shadow-outline focus:outline-none w-full"
-            />
-          </template>
-        </v-date-picker>
-        <BaseIcon :icon="iconRigth" v-if="iconRigth"></BaseIcon>
-      </div>
+      
+   
       <div
         v-else
         class="flex items-center outiline-0 focus:shadow-outline rounded-lg border focus:outline-none space-x-2"
