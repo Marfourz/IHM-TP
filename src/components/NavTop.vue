@@ -12,7 +12,7 @@
         placeholder="Rechercher des livres"
           class="outiline-0 py-2 px-3 rounded-lg text-gray-700 bg-transparent focus:shadow-outline focus:outline-none w-full"
         />
-        <div class="w-10 h-10 bg-gray-100 flex items-center justify-center">
+        <div class="w-10 h-10 bg-gray-100 flex items-center justify-center cursor-pointer">
             <BaseIcon name="search"></BaseIcon>
         </div>
        

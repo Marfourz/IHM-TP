@@ -5,7 +5,7 @@
       <div class="space-y-4">
         <div class="flex space-x-2 items-center">
           <BaseIcon name="filter"></BaseIcon>
-          <div class="text-2xl text-primary font-bold">Filtrer</div>
+          <div class="text-2xl text-primary font-bold">Filtres</div>
         </div>
         <FilterCard title="Catégorie">
           <template #body>
@@ -23,7 +23,6 @@
         </FilterCard>
       </div>
 
-      <FilterCard title="Année"> </FilterCard>
     </div>
 
     <div class="w-full h-full overflow-scroll space-y-4">
