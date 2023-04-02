@@ -1,13 +1,16 @@
 <template>
-    <div class="h-screen w-screen flex">
-        <div class="w-[50%] bg-primary text-red-400 flex flex-col justify-center">
-                <img src="@/assets/images/bookInBasket.png" alt="" >
+    <div class="sign-in h-screen w-screen flex">
+        <div class="auth-sidebar w-[50%] bg-primary text-red-400 flex flex-col justify-center">
+                <img src="@/assets/images/library.jpg" alt="" >
         </div>
         <div class="w-[50%] h-full flex items-center justify-center">
             <Form 
             @submit="login"
             class="w-[80%] flex items-center justify-center flex-col space-y-4   py-8 px-6 md:px-14"
           >
+
+            <div class="text-4xl text-left text-primary font-bold">Se connecter</div>
+
             <BaseSimpleAlert icon="warning" type="danger" v-if="errorMessage">{{errorMessage}}</BaseSimpleAlert>
            
             <BaseInput
@@ -30,7 +33,7 @@
             </div>
             <BaseButton class="w-full" :loading="loading">Se connecter</BaseButton>
             <div class="text-sm pt-4">Vous n'avez pas encore de compte ?</div>
-            <div class="text-primary text-sm underline cursor-pointer" @click="$router.push({name:'registrationUserInfos'})">Créer un compte</div>
+            <div class="text-primary text-sm underline cursor-pointer" @click="$router.push({name:'register'})">Créer un compte</div>
           </Form>
         </div>
        
@@ -72,14 +75,28 @@ function login(){
     }
     loading.value = false
     }, 1000)
-
-   
-        
+     
 }
 
 
 </script>
 
 <style lang="scss" scoped>
+.sign-in {
+  .auth-sidebar {
+    img {
+      object-fit: cover;
+      height: 100%;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .sign-in {
+    .auth-sidebar {
+      display: none;
+    }
+  }
+}
 
 </style>

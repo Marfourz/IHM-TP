@@ -10,7 +10,7 @@ module.exports = {
         borderColor:'#858C94',
         fadeDanger: '#FEEFEF',
         fadeSuccess: '#EDF9F0',
-        primary : '#018748',
+        primary : '#1A1668',
         success: '#00BE65',
         danger: '#DA1414',
         secondary : '#FC6E1F',

@@ -1,7 +1,7 @@
 <template>
-    <div class="rounded-lg shadow min-w-[300px] bg-white" >
+    <div class="rounded-lg min-w-[300px] bg-white" >
        
-        <div class=" border border-b p-4" @click="show = !show">
+        <div class="border-b p-4 filterCard-title text-primary" @click="show = !show">
             {{ title }}
         </div>
 
@@ -29,5 +29,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.filterCard-title {
+    font-size: 18px;
+    font-weight: 500;
+}
 </style>

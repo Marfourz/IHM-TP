@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/index.vue'
 import Login from "@/views/auth/login.vue"
+import Register from "@/views/auth/register.vue"
 import DefaultLayout from "@/layouts/default.vue"
 import Basket from "@/views/basket.vue"
 
@@ -32,7 +33,12 @@ const router = createRouter({
      
       component: Login
     },
-   
+    {
+      path: '/register',
+      name: 'register',
+     
+      component: Register
+    }
   ]
 })
 
